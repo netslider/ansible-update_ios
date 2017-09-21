@@ -1,0 +1,20 @@
+---
+- name: Update Cisco IOS device images
+  hosts: [3560X]
+  serial: 5
+  gather_facts: no
+  connection: local
+  vars:
+    cli:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_ssh_user }}"
+      password: "{{ ansible_ssh_pass }}"
+      timeout: 600
+
+    ios_img_3560X: "your_chosen_image.bin"
+
+  tasks:
+
+    - name: Executing 3560X platform task list...
+      include: 3560X.yaml
+      when: "'3560X' in group_names"
